@@ -1,5 +1,5 @@
-import BaseAgent
-import PipelineState, Section
+from app import BaseAgent
+from app import PipelineState, Section
 
 WRITER_SYSTEM_PROMPT = """You are the Writer Agent in a research report \
 generation system. Write clear, well-structured prose for a single report \

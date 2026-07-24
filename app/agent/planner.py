@@ -1,8 +1,8 @@
 #generate a structured outline for the report
 
-import BaseAgent
-from .llm_client import call_llm
-import PipelineState
+from app import BaseAgent
+#from .llm_client import call_llm
+from app import PipelineState
 
 PLANNER_SYSTEM_PROMPT = """You are the Planner Agent in a research report \
 generation system. Given a topic, produce a clear section outline for a \
