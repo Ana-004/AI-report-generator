@@ -1,7 +1,7 @@
 #generate a structured outline for the report
 
 from app import BaseAgent
-#from .llm_client import call_llm
+from .llm_client import call_llm
 from app import PipelineState
 
 PLANNER_SYSTEM_PROMPT = """You are the Planner Agent in a research report \
