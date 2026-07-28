@@ -8,7 +8,7 @@ knowing anything about how any individual agent works internally.
 
 from dataclasses import dataclass, field
 
-#With @dataclass python automatically creates the constructor.
+#With @dataclass (@ -> decorator) python automatically creates the constructor (__init__)
 @dataclass
 class Section:
     title: str

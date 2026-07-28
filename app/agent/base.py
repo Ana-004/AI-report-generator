@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-
-import PipelineState
+from app import LLMFactory
+from app import PipelineState
 
 class BaseAgent(ABC):
     """

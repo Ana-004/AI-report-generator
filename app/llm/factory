@@ -20,7 +20,7 @@ except ImportError:
     litellm = None
 
 #LLM provider
-DEFAULT_MODEL = {
+DEFAULT_MODELS = {
     "anthropic" : "claude-sonnet-5",
     "openai" : "gpt-40",
     "gemini" : "gemini/gemini-1.5.pro"
