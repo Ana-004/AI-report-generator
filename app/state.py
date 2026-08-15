@@ -8,7 +8,7 @@ knowing anything about how any individual agent works internally.
 
 from dataclasses import dataclass, field
 
-#With @dataclass (@ -> decorator) python automatically creates the constructor (__init__)
+#With @dataclass (@ -> decorator ) python automatically creates the constructor (__init__)
 @dataclass
 class Section:
     title: str
@@ -33,7 +33,7 @@ class PipelineState:
     citation_format: str = "APA"    # APA | MLA | Chicago | IEEE
 
     # --- planner output ---
-    outline: list[str] = field(default_factory=list)
+    outline: list[str] = field(default_factory=list)      #creates a new list every time
 
     # --- researcher output (Phase 3) ---
     sources: list[Source] = field(default_factory=list)
