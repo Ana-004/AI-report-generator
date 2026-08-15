@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 
-from app import models
-from app import Orchestrator
-from app import ReportRequest
-from app import PipelineState
-from app import latest_report as cache
+#from app import models
+from app.graph.workflow import Orchestrator
+from app.schemas import ReportRequest
+from app.state import PipelineState
+from app.reports import report_cache as cache
 
 router = APIRouter(prefix="/reports", tags=["reports"])
 

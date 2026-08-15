@@ -1,5 +1,5 @@
-from app import BaseAgent
-from app import PipelineState
+from app.agent.base import BaseAgent
+from app.state import PipelineState
 
 REVIEWER_SYSTEM_PROMPT = """You are the Reviewer Agent. Read the full draft \
 report and rewrite it to fix clarity, flow, and consistency issues across \
@@ -11,6 +11,9 @@ section headers included — nothing else."""
 class ReviewerAgent(BaseAgent):
     name = "reviewer"
 
+    def __init__(self, llm):
+        self.llm = llm
+        
     def run(self, state: PipelineState) -> PipelineState:
         user_prompt = f"Draft report:\n\n{state.draft}"
         reviewed = self.llm.generate(REVIEWER_SYSTEM_PROMPT, user_prompt, max_tokens=3000)

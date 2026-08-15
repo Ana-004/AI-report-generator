@@ -1,10 +1,9 @@
-#from app.llm.factory import LLMFactory
-from app import (
-    PlannerAgent,
-    WriterAgent,
-    ReviewerAgent,
-    FormatterAgent,
-)
+from app.llm.factory import LLMFactory
+
+from app.agent.planner import PlannerAgent
+from app.agent.writer import WriterAgent
+from app.agent.reviewer import ReviewerAgent
+from app.agent.formatter import FormatterAgent
 
 shared_llm = LLMFactory().create()
 

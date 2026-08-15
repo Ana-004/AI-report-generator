@@ -1,5 +1,5 @@
-from app import BaseAgent
-from app import PipelineState, Section
+from app.agent.base import BaseAgent
+from app.state import PipelineState, Section
 
 WRITER_SYSTEM_PROMPT = """You are the Writer Agent in a research report \
 generation system. Write clear, well-structured prose for a single report \
@@ -12,6 +12,9 @@ in a later phase once real sources are wired up."""
 class WriterAgent(BaseAgent):
     name = "writer"
 
+    def __init__(self, llm):
+        self.llm = llm
+        
     def run(self, state: PipelineState) -> PipelineState:
         for i, title in enumerate(state.outline):
             user_prompt = (

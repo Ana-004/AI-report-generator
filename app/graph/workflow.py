@@ -1,21 +1,20 @@
 from langgraph.graph import StateGraph, START, END
 
-from app import PipelineState
-from app import (
-    PlannerAgent,
-    WriterAgent,
-    ReviewerAgent,
-    FormatterAgent,
-)
+from app.state import PipelineState
 
-from app import (
+from app.agent.planner import PlannerAgent
+from app.agent.writer import WriterAgent
+from app.agent.reviewer import ReviewerAgent
+from app.agent.formatter import FormatterAgent
+
+from app.graph.nodes import (
     planner_node,
     writer_node,
     reviewer_node,
     formatter_node
 )
 
-from app import LLMFactory
+from app.llm.factory import LLMFactory
 
 
 class Orchestrator:

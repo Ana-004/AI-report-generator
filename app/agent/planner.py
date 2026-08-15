@@ -1,8 +1,8 @@
 #generate a structured outline for the report
 
-from app import BaseAgent
-#from app import call_llm
-from app import PipelineState
+from app.agent.base import BaseAgent
+from app.llm.factory import LLMClient
+from app.state import PipelineState
 
 PLANNER_SYSTEM_PROMPT = """You are the Planner Agent in a research report \
 generation system. Given a topic, produce a clear section outline for a \
@@ -11,6 +11,9 @@ section titles, one per line, nothing else - no preamble, no explanation."""
 
 class PlannerAgent(BaseAgent):
     name = "planner"
+
+    def __init__(self, llm):
+        self.llm = llm
 
     def run(self, state: PipelineState) -> PipelineState:
         user_prompt = (

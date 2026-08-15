@@ -1,7 +1,7 @@
 from datetime import date
 
-from app import BaseAgent
-from app import PipelineState
+from app.agent.base import BaseAgent
+from app.state import PipelineState
 
 
 class FormatterAgent(BaseAgent):
