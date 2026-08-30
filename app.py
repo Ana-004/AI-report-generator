@@ -1,5 +1,9 @@
+import os
+
 import streamlit as st
 import requests
+from app.exporter.pdf_exporter import PDFExporter
+from app.exporter.docx_exporter import DOCXExporter
 
 # CONFIGURATION
 API_URL = "http://127.0.0.1:8000"
@@ -454,6 +458,16 @@ with col2:
     # GENERATE BUTTON
     generate_btn = st.button("Generate", use_container_width=True)
 
+export_pdf = st.checkbox(
+        "Generate PDF",
+        value=True,
+    )
+
+export_docx = st.checkbox(
+        "Generate DOCX",
+        value=True,
+    )
+
 # Trigger Logic (Generate button)
 if generate_btn:
     if not topic.strip():
@@ -493,6 +507,42 @@ if generate_btn:
 
                 # Refresh so Recent shows new report
                 st.rerun()
+
+                # SAVE PDF                
+            if export_pdf:
+                pdf = PDFExporter()
+                pdf.export(report,"research_report.pdf")
+                
+            # SAVE DOCX
+            if export_docx:
+                doc = DOCXExporter()
+                doc.export(report, "research_report.docx")
+
+                st.divider()
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    if os.path.exists("research_report.pdf"):
+                        with open("research_report.pdf","rb") as file:                
+                                    st.download_button(
+                                        "⬇ Download PDF",
+                                        data=file,
+                                        file_name="research_report.pdf",
+                                        mime="application/pdf",
+                                        use_container_width=True,
+                                    )
+                
+                with col2:
+                    if os.path.exists("research_report.docx"):
+                        with open("research_report.docx","rb") as file:                
+                                    st.download_button(
+                                        "⬇ Download DOCX",
+                                        data=file,
+                                        file_name="research_report.docx",
+                                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                        use_container_width=True,
+                                    )
+                
 
             else:
                 st.error(
