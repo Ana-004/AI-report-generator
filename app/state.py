@@ -18,10 +18,19 @@ class Section:
 
 @dataclass
 class Source:
-    """Populated starting Phase 3 by the Researcher Agent."""
-    url: str = ""
     title: str = ""
+    url: str = ""
     raw_text: str = ""
+
+    # Research metadata
+    authors: list[str] = field(default_factory=list)
+    year: str = ""
+    doi: str = ""
+
+    # Where the source came from
+    source_type: str = ""       # academic / web
+    provider: str = ""          # BASE / Tavily
+    external_id: str = ""
 
 
 @dataclass
@@ -31,11 +40,12 @@ class PipelineState:
     length: str = "medium"          # short | medium | long
     style: str = "academic"         # academic | business | technical
     citation_format: str = "APA"    # APA | MLA | Chicago | IEEE
+    model: str = "gpt-4"                 # gpt-4 | gpt-3.5-turbo | custom
 
     # --- planner output ---
     outline: list[str] = field(default_factory=list)      #creates a new list every time
 
-    # --- researcher output (Phase 3) ---
+    # --- researcher output ---
     sources: list[Source] = field(default_factory=list)
 
     # --- writer output ---

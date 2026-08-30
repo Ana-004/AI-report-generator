@@ -12,8 +12,8 @@ in a later phase once real sources are wired up."""
 class WriterAgent(BaseAgent):
     name = "writer"
 
-    def __init__(self, llm):
-        self.llm = llm
+    def __init__(self, model: str | None = None):
+        super().__init__(model=model)
         
     def run(self, state: PipelineState) -> PipelineState:
         for i, title in enumerate(state.outline):

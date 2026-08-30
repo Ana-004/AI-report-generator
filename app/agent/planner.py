@@ -12,8 +12,8 @@ section titles, one per line, nothing else - no preamble, no explanation."""
 class PlannerAgent(BaseAgent):
     name = "planner"
 
-    def __init__(self, llm):
-        self.llm = llm
+    def __init__(self, model: str | None = None):
+        super().__init__(model=model)
 
     def run(self, state: PipelineState) -> PipelineState:
         user_prompt = (

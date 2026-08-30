@@ -1,20 +1,35 @@
 from dotenv import load_dotenv
 
-from app.reports import report_cache
-
 load_dotenv()
 
+from app.database import Base, engine
 from fastapi import FastAPI  # (load_dotenv must run first)
 
-from app.reports import report 
-from app.reports import report_cache as cache
+from app.routers.reports import router as reports_router
+from app.routers import report_cache as cache
 
-app = FastAPI(
-    title="AI Research Report Generator",
-    version="0.1.0"
+# CREATE DATABASE TABLES
+Base.metadata.create_all(
+    bind=engine
 )
 
-app.include_router(report.router)
+# FASTAPI APPLICATION
+app = FastAPI(
+    title="AI Research Report Generator",
+    description="Multi-Agent AI Research Report Generator",
+    version="1.0.0"
+)
+
+# ROUTERS
+app.include_router(reports_router)
+
+# ROOT
+@app.get("/")
+def root():
+
+    return {
+        "message": "ResearchForge API is running."
+    }
 
 @app.get("/health")
 def health():

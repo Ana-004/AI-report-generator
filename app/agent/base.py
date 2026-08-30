@@ -14,6 +14,14 @@ class BaseAgent(ABC):
 
     name: str = "base_agent"
 
+    def __init__(self, model: str | None = None):
+
+        self.model = model
+
+        self.llm = LLMFactory(
+            model=model
+        ).create()
+
     @abstractmethod
     def run(self, state: PipelineState) -> PipelineState:
         pass

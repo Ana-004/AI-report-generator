@@ -5,3 +5,4 @@ class ReportRequest(BaseModel):
     length: str = "medium"          # short | medium | long
     style: str = "academic"         # academic | business | technical
     citation_format: str = "APA"    # APA | MLA | Chicago | IEEE
+    model: str
